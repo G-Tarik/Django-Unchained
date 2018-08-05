@@ -14,7 +14,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 </head>
 <body>
-<div class=".container-fluid">
+<div class="container">
   <div class="row">
     <div class="col-lg-12">
       <nav class="navbar navbar-inverse">
@@ -30,8 +30,8 @@
   </div>
   <div class="row">
     <div class="col-lg-2">
+      <a href="{% url 'opinion:index' %}" class="btn btn-primary btn-block">Opinions sharing</a><br>
       <ul class="nav nav-pills nav-stacked" role="tablist">
-        <li class="active"><a href="{% url 'opinion:index' %}">Opinions sharing</a></li>
         {% block left_nav %}{% endblock %}
       </ul>
     </div>

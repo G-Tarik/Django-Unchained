@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block left_nav %}
+  <h4>List of categories</h4>
   {% for cat in categories %}
     <li {{ highlight }}><a href="{% url 'opinion:list_all' %}?filter={{ cat.id }}">{{ cat.name_text }}</a></li>
   {% endfor %}
