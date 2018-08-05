@@ -5,7 +5,10 @@ from .forms import OpinionForm, CategoryForm, ItemForm
 
 def prepare_list(category_id):
     categories = Category.objects.all()
-    category_selected = Category.objects.get(id=category_id)
+    try:
+        category_selected = Category.objects.get(id=category_id)
+    except Category.DoesNotExist:
+        category_selected = None
     context = {'category_selected': category_selected, 'categories': categories}
 
     return context
