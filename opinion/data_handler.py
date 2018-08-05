@@ -5,11 +5,8 @@ from .forms import OpinionForm, CategoryForm, ItemForm
 
 def prepare_list(category_id):
     categories = Category.objects.all()
-    if category_id == 'all' or category_id == '':
-        category = categories
-    else:
-        category = [Category.objects.get(id=category_id)]
-    context = {'category': category, 'categories': categories}
+    category_selected = Category.objects.get(id=category_id)
+    context = {'category_selected': category_selected, 'categories': categories}
 
     return context
 
