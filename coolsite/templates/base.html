@@ -7,27 +7,38 @@
   <title>{% block title %}Opinions sharing{% endblock %}</title>
   <meta name="description" content="Simple CRUD django example">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}">
   <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 </head>
-
 <body>
-  <div class="top-nav">
-      <ul>
-          <li><a href="{% url 'opinion:add_category_or_item' table='category' %}">Add new category</a></li>
-          <li><a href="{% url 'opinion:add_category_or_item' table='item' %}">Add new product or service</a></li>
-      </ul>
-  </div>
-  <div class="container">
-    <div class="left-side">
-        <a href="{% url 'pages:index' %}">Home</a>
-        <ul>
-            <li><a href="{% url 'opinion:index' %}">Opinions sharing</a></li>
-        </ul>
+<div class=".container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <nav class="navbar navbar-inverse">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="{% url 'opinion:index' %}">CoolSite</a>
+          </div>
+          <ul class="nav navbar-nav">
+            <li><a href="{% url 'opinion:add_category_or_item' table='category' %}">Add new category</a></li>
+            <li><a href="{% url 'opinion:add_category_or_item' table='item' %}">Add new product or service</a></li>
+          </ul>
+      </nav>
     </div>
-    <div class="main">{% block center %}{% endblock %}</div>
-    <div class="right-side">{% block right %}{% endblock %}</div>
   </div>
-
+  <div class="row">
+    <div class="col-lg-2">
+      <ul class="nav nav-pills nav-stacked" role="tablist">
+        <li class="active"><a href="{% url 'opinion:index' %}">Opinions sharing</a></li>
+        {% block left_nav %}{% endblock %}
+      </ul>
+    </div>
+    <div class="col-lg-10">
+      {% block center %}{% endblock %}
+    </div>
+  </div>
+</div>
 </body>
 </html>

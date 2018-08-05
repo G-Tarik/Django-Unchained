@@ -9,7 +9,7 @@ TABLES = ['category', 'item']
 
 
 def list_all(request):
-    category_id = request.GET.get('filter', '')
+    category_id = request.GET.get('filter', '1')
     context = dh.prepare_list(category_id)
 
     return render(request, 'opinion/list_all.html', context)
