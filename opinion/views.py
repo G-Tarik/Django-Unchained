@@ -60,6 +60,6 @@ def add_category_or_item(request, table):
 
 def delete_opinion(request):
     if request.method == 'POST':
-        Opinion.objects.filter(id=request.POST['op_id']).delete()
+        dh.delete_record(request.POST['op_id'])
 
     return redirect('opinion:list_all')
