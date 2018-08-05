@@ -7,7 +7,7 @@ PLUS1 = 1
 MINUS1 = -1
 
 
-def prepare_list(category_id):
+def prepare_list(category_id=1):
     categories = Category.objects.all()
     try:
         category_selected = Category.objects.get(id=category_id)
@@ -42,6 +42,7 @@ def save_category_or_item(request, _model):
                'table': _model,
                'action_arg': _model,
                'action_url': 'opinion:add_category_or_item'}
+    context.update(prepare_list())
 
     return render(request, 'opinion/add_form.html', context)
 

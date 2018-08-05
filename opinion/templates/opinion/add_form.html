@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
+{% block left_nav %}
+ {% include 'opinion/categories_list.html' %}
+{% endblock %}
+
 {% block center %}
 
 {% if table == 'item' %}
