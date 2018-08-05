@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block center %}
+    This is opinion about {{ opinion.item.type_text }} <em>{{ opinion.item }}</em> in category {{ opinion.category }}
+    <p><strong>{{ opinion.title_text }}</strong></p>
+    <hr>
+    <p>{{ opinion.message_text }}</p>
+    <hr>
+    <table>
+    <tr>
+        <td>
+            <form action="{% url 'opinion:delete_opinion' %}" method="post">
+            {% csrf_token %}
+            <input name="op_id" type="hidden" value="{{ opinion.id }}">
+            <input type="submit" value="Delete this opinion">
+            </form>
+        </td>
+        <td>
+            <form action="{% url 'opinion:edit_opinion' opinion.id %}" method="get">
+            <input type="submit" value="Edit this opinion">
+            </form>
+        </td>
+    </tr>
+</table>
+{% endblock %}

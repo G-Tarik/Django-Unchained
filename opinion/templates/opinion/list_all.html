@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block center %}
+<form action="{% url 'opinion:list_all' %}" method="get">
+  <select name="filter">
+    <option selected disabled hidden>Choose category</option>
+    <option value="all">All</option>
+    {% for cat in categories %}
+      <option value="{{ cat.id }}">{{ cat.name_text }}</option>
+    {% endfor %}
+  </select>
+  <input type="submit" value="Apply filter">
+</form>
+    <ul>
+    {% for cat in category %}
+        <li>{{ cat.name_text }}</li>
+        <li class="inner-list">
+          <ul>
+              {% for item in cat.items.all %}
+                  <li>
+                      {{ item.name_text }}
+                      <a href="{%  url 'opinion:add_opinion' item_id=item.id %}" title="Add new opinion">
+                          <img src="{% static 'images/add-16.png' %}"></a>
+                  </li>
+                  <li class="inner-list">
+                    <ul>
+                        {% for opinion in item.opinions.all %}
+                            <li>
+                                <a href="{% url 'opinion:show_opinion' opinion.id %}">{{ opinion.title_text }}</a>
+                                <p>Published: {{ opinion.publish_date }}</p>
+                            </li>
+                        {%  endfor %}
+                    </ul>
+                  </li>
+              {% endfor %}
+          </ul>
+        </li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

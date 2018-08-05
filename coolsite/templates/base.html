@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>{% block title %}Opinions sharing{% endblock %}</title>
+  <meta name="description" content="Simple CRUD django example">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+</head>
+
+<body>
+  <div class="top-nav">
+      <ul>
+          <li><a href="{% url 'opinion:add_category_or_item' table='category' %}">Add new category</a></li>
+          <li><a href="{% url 'opinion:add_category_or_item' table='item' %}">Add new product or service</a></li>
+      </ul>
+  </div>
+  <div class="container">
+    <div class="left-side">
+        <a href="{% url 'pages:index' %}">Home</a>
+        <ul>
+            <li><a href="{% url 'opinion:index' %}">Opinions sharing</a></li>
+        </ul>
+    </div>
+    <div class="main">{% block center %}{% endblock %}</div>
+    <div class="right-side">{% block right %}{% endblock %}</div>
+  </div>
+
+</body>
+</html>

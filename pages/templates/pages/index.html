@@ -1,0 +1,9 @@
+{%  extends 'base.html' %}
+{%  block center %}
+    <p>This is a list of user applications in current Django project</p>
+<ul>
+    {% for app in apps_list %}
+        <li><a href="{% url app|add:':index' %}">{{ app|capfirst }} App</a></li>
+    {% endfor %}
+</ul>
+{%  endblock %}
