@@ -1,20 +1,27 @@
 {% extends 'base.html' %}
 {% load static %}
+      {% block center %}
 
-{% block left_nav %}
   <h4>List of categories</h4>
   {% for cat in categories %}
     <li {{ highlight }}><a href="{% url 'opinion:list_all' %}?filter={{ cat.id }}">{{ cat.name_text }}</a></li>
   {% endfor %}
-{% endblock %}
+
+      {% endblock %}
+
 
 {% block center %}
   <div class="panel-group" id="accordion">
+    {% if not category_selected %}
+      <h4>Please, select a category on the left</h4>
+    {% endif %}
     {% for item in category_selected.items.all %}
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ forloop.counter }}">{{ item.name_text }}</a>
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ forloop.counter }}">
+              {{ item.name_text }}</a>
+            <span title="Opinions counter" class="badge">{{ item.opinions_number }}</span>
             <a href="{%  url 'opinion:add_opinion' item_id=item.id %}" title="Add new opinion">
                           <img src="{% static 'images/add-16.png' %}"></a>
           </h4>
