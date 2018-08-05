@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
+{% block left_nav %}
+ {% include 'opinion/categories_list.html' %}
+{% endblock %}
+
 {% block center %}
     This is opinion about {{ opinion.item.type_text }} <em>{{ opinion.item }}</em> in category {{ opinion.category }}
     <p><strong>{{ opinion.title_text }}</strong></p>

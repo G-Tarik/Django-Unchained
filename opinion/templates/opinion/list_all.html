@@ -1,14 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
-      {% block center %}
-
-  <h4>List of categories</h4>
-  {% for cat in categories %}
-    <li {{ highlight }}><a href="{% url 'opinion:list_all' %}?filter={{ cat.id }}">{{ cat.name_text }}</a></li>
-  {% endfor %}
-
-      {% endblock %}
-
+{% block left_nav %}
+ {% include 'opinion/categories_list.html' %}
+{% endblock %}
 
 {% block center %}
   <div class="panel-group" id="accordion">
